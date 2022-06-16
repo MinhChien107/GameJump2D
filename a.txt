@@ -1,0 +1,114 @@
+Xóa text của button đi trong decisions
+xong cho squre rounded vào image của button và cho màu xanh 
+outline 10 -10 màu trắng
+trong button tạo ra image đặt tên là DecisionIcon 
+ Rồi căn theo thằng cha cả 4 hướng
+Left 25 top 25 right  botton 25
+đưa ảnh rock vào trong image của game object DecisionIcon và cgobj preseve Aspect
+Rồi crtl D cop ra 2 cái gameobejct button khác
+Đổi tên lần lượt là rock paper scissors và đổi ảnh
+
+Tạo 1 cái text tỏng decisions
+pos y 225 width 940 height 180
+center botton
+chữ căn giữa
+font 125 
+out line 3 5 màu đen 
+chữ là : Select your deision
+đổi tên object là selectDecisionText
+
+Tạo text tên là result text 
+
+alt 4 hướng theo thằng cha
+chọn căn giữa
+font chữ 125 
+outline 3 5 apha 225
+và tắt đi
+
+
+AudioController (Game obejct)
+add audioController vào game object 
+
+Thêm 2 cái audio source 
+
+nhét 2 cái vào cái music Aus
+sfx ásu  trong audio controller
+
+bg  kéo vào background
+winsound thì kéo theo tên là getScore 
+
+
+Script cần tạo là lưu hằng số : Const
+
+public const int SCISSORS = 1; 
+public const int PAPER = 2;
+public const int ROCK = 3;
+
+
+GameManager tạo cả đối tượng lẫn script
+public AIController ai;
+
+//Viết trong start
+AudioController.Ins.PlayBackgoundMusic();
+
+public void CheckDecision(int decision){
+	string result = "";
+	if(ai == null) return;
+	ai.MakeDecision();
+	Switch (decision)
+	{
+	case Const.rock
+		Switch (curDecision)
+	{
+		case Const.Rock:
+			result = "DRAW !!";
+			AudioController.Ins.PlaySound(AudioController.Ín.drawSound);
+			break;
+		case Const.PAPER:
+			result = "YOU LOSE !!";
+			AudioController.Ins.PlaySound(AudioController.Ins.loseSound);
+			break;
+		case Const.SCISSIORS:
+			result = "YOU WIN !!";
+			AudioController.Ins.PlaySound(AudioController.Ín.windSound);
+			break;
+	};
+	
+	}
+
+}
+
+AIController
+import ui vào
+
+public int curDecision;
+public Image decisionIcon;
+public GameObject questionMark;
+
+
+public void ShowDecisionIcon(bool isShow){
+	if(decisionIcon){
+	decisionIcon.gameObject.SetActive(isShow);
+	}
+	if(questionMark)
+	{
+	questionMark.SetActive(!isShow);	
+ 	}
+
+}
+
+
+public void MakeDecision(bool isShow){
+	curDecision = Random.Range(1, 4);
+	ShowDecisionIcon(true);
+	Switch (curDecision)
+	{
+		case Const.Rock:
+			break;
+		case Const.PAPER:
+			break;
+		case Const.SCISSIORS:
+			break;
+	}
+}
+
